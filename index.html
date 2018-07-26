@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <title id="demoTitle">EM BREVE</title>
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .bgimg {
+                background-color: darkslateblue;
+                background-image: url(BG.jpeg);
+                height: 100%;
+                background-position: center;
+                background-size: cover;
+                position: relative;
+                color: #FFF;
+                font-family: sans-serif;
+                text-shadow: 3px 3px 5px #000;
+            }
+            .middle {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+            h1 {
+                font-size: 40px;
+                letter-spacing: 30px;
+                font-weight: 600;
+            }
+            #demo {
+                font-weight: lighter;
+                word-spacing: 20px;
+            }
+            hr {
+                margin: auto;
+                width: 80%;
+                border: 1.5px solid #FFF;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="bgimg">
+            <div class="middle">
+                <h1>EM BREVE</h1>
+                <hr>
+                <p id="demo" style="font-size: 30px"></p>
+            </div>
+        </div>
+    </body>
+    
+    <script>
+        var contadorRegressivo = new Date("Aug 15, 2018 23:59:59").getTime();
+        
+        var contadorRegressivoFunction = setInterval(function () {
+            var hoje = new Date().getTime();
+            var distancia = contadorRegressivo - hoje;
+            var dias = Math.floor(distancia/(1000*60*60*24));
+            var horas = Math.floor((distancia % (1000*60*60*24)) / (1000*60*60));
+            var minutos = Math.floor((distancia % (1000*60*60)) / (1000*60));
+            var segundos = Math.floor((distancia % (1000*60)) / 1000);
+            
+            document.getElementById("demo").innerHTML = dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+            document.getElementById("demoTitle").innerHTML = dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+            
+            if (distancia < 0) {
+                clearInterval(contadorRegressivoFunction);
+                document.getElementById("demo").innerHTML = "";
+            }
+        }, 1000);
+    </script>
+</html>
